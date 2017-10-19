@@ -3,12 +3,12 @@ import matplotlib.pyplot as p
 import csv
 import operator as o
 import math as m
-
+import ast
 
 def csvread(a):
 	"""This is to read any dataset from a csv file"""
 	with open(a,'rb') as f:
-		row = csv.reader(f,delimiter='\t')				# set whatever the delimiter you want(',' or '\t')
+		row = csv.reader(f,delimiter=',')				# set whatever the delimiter you want(',' or '\t')
 		l = lambda row : [map(float,x) for x in row]
 		return l(row)
 
@@ -49,6 +49,7 @@ the model(calculates the coefficients) and the prediction is done on the test se
 
 def test_set(dataset):
 	"""convert the dataset into test set"""
+	
 	test=[row[0] for row in dataset]
 	return test
 
@@ -66,7 +67,7 @@ def rmse(y1,y2):
 
 def main():
 	"""This is the starting point of the program. \nJust put the desired filename below \nBy default it is 1.csv"""
-	file_name='1.csv'
+	file_name='train.csv'
 	dataset=csvread(file_name)
 	test=test_set(dataset)				# To check using the same dataset,for user defined values use below line(uncommented)
 
